@@ -1,11 +1,20 @@
-apply plugin: 'com.android.application'
+def currentComponent = rootProject.ext.components.main
+if (currentComponent.isStandalone) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
     def versions = rootProject.ext.versions
     compileSdkVersion versions.compileSdkVersion
 
+
     defaultConfig {
-        applicationId "com.ranze.likemusic"
+        if (currentComponent.isStandalone) {
+            // 当前组件独立运行，需要设置applicationId
+            applicationId currentComponent.applicationId
+        }
 
         minSdkVersion versions.minSdkVersion
         targetSdkVersion versions.targetSdkVersion
@@ -15,6 +24,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         def moduleName = project.getName()
+        resourcePrefix "${moduleName}_"
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -26,12 +37,24 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            if (currentComponent.isStandalone) {
+                manifest.srcFile 'src/standalone/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java/', 'src/standalone/java/']
+                res.srcDirs = ['src/main/res', 'src/standalone/res']
+            }
+        }
+    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -40,16 +63,14 @@ android {
 
 dependencies {
     def dependencies = rootProject.ext.dependencies
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation dependencies.support.appcompat
+    implementation  dependencies.support.design
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
-    def components = rootProject.ext.components
-    def isMainStandalone = components.main.isStandalone
-    if (!isMainStandalone) {
-        implementation project(':maincomponent')
-    }
+    annotationProcessor dependencies.arouter.annotationProcessor
+    annotationProcessor project(':component-compiler')
+    api project(':componentservice')
 }

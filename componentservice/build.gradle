@@ -1,12 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     def versions = rootProject.ext.versions
     compileSdkVersion versions.compileSdkVersion
 
-    defaultConfig {
-        applicationId "com.ranze.likemusic"
 
+
+    defaultConfig {
         minSdkVersion versions.minSdkVersion
         targetSdkVersion versions.targetSdkVersion
         versionCode versions.versionCode
@@ -25,31 +25,35 @@ android {
                 ]
             }
         }
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
+
 }
 
 dependencies {
     def dependencies = rootProject.ext.dependencies
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation dependencies.support.appcompat
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    def components = rootProject.ext.components
-    def isMainStandalone = components.main.isStandalone
-    if (!isMainStandalone) {
-        implementation project(':maincomponent')
-    }
+    // arouter
+    api dependencies.arouter.api
+    annotationProcessor dependencies.arouter.annotationProcessor
+
+    api project(':component-api')
+    annotationProcessor project(':component-compiler')
+
+    api project(':basiclib')
+    api project(':basicres')
 }
