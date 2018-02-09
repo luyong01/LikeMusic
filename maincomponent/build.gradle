@@ -49,8 +49,8 @@ android {
         main {
             if (currentComponent.isStandalone) {
                 manifest.srcFile 'src/standalone/AndroidManifest.xml'
-                java.srcDirs = ['src/main/java/', 'src/standalone/java/']
-                res.srcDirs = ['src/main/res', 'src/standalone/res']
+                java.srcDirs = ['src/maincomponent_main/java/', 'src/standalone/java/']
+                res.srcDirs = ['src/maincomponent_main/res', 'src/standalone/res']
             }
         }
     }
@@ -65,8 +65,9 @@ dependencies {
     def dependencies = rootProject.ext.dependencies
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation dependencies.support.appcompat
-    implementation  dependencies.support.design
+    implementation dependencies.support.design
 
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
