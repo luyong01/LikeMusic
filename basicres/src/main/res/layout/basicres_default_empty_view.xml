@@ -4,8 +4,9 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_mine"
+        android:id="@+id/text_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="this is mine fragment" />
+        android:layout_gravity="center"
+        android:text="empty" />
 </FrameLayout>

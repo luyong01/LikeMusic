@@ -1,10 +1,8 @@
 package com.ranze.maincomponent.friends;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ranze.componentservice.app.BaseCommonFragment;
 import com.ranze.maincomponent.R;
@@ -15,11 +13,22 @@ import com.ranze.maincomponent.discovery.DiscoveryFragment;
  */
 
 public class FriendsFragment extends BaseCommonFragment {
-    @Nullable
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.maincomponent_frag_friends, container, false);
-        return rootView;
+    protected int getLayoutId() {
+        return R.layout.maincomponent_frag_friends;
+    }
+
+    @Override
+    protected void convert(View rootView) {
+
+    }
+
+    @Override
+    protected void loadData() {
+        Log.d("test", "friends loadData");
+        mDataLoaded = true;
     }
 
     public static DiscoveryFragment newInstance(String string) {
