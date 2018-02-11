@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,6 +24,7 @@
                 android:id="@+id/main_radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -31,27 +33,27 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/maincomponent_action_bar_music_bg"
                     android:button="@null"
-                    android:checked="true" />
-
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/btn_discovery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/maincomponent_action_bar_discovery_bg"
-                    android:button="@null" />
+                    android:button="@null"/>
 
                 <RadioButton
                     android:id="@+id/btn_friends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/maincomponent_action_bar_friends_bg"
-                    android:button="@null" />
+                    android:button="@null"/>
             </RadioGroup>
+
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/maincomponent_content_main" />
+    <include layout="@layout/maincomponent_content_main"/>
 
 </android.support.design.widget.CoordinatorLayout>
