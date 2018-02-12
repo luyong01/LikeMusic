@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
+import com.ranze.basiclib.repository.remote.NetWorker;
 import com.ranze.basiclib.widget.BaseAdapter;
 import com.ranze.basiclib.widget.BaseRecyclerView;
 import com.ranze.componentservice.app.BaseCommonFragment;
@@ -46,6 +47,9 @@ public class MusicFragment extends BaseCommonFragment {
         for (int i = 0; i < 100; ++i) {
             mData.add(i + " item");
         }
+
+        NetWorker.getInstance().login("17621652365", "ly521561");
+
         mDataLoaded = true;
     }
 

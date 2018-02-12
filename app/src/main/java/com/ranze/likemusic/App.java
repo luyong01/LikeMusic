@@ -1,5 +1,7 @@
 package com.ranze.likemusic;
 
+import com.facebook.stetho.Stetho;
+import com.ranze.basiclib.util.Utils;
 import com.ranze.componentservice.app.BaseCommonApplication;
 
 /**
@@ -11,5 +13,12 @@ public class App extends BaseCommonApplication {
     public void onCreate() {
         super.onCreate();
         initRouterAndComponent(BuildConfig.DEBUG);
+
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this);
+        }
+
+        Utils.init(getApplicationContext());
+
     }
 }
