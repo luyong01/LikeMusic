@@ -1,4 +1,6 @@
-package com.ranze.basiclib.repository.remote.model;
+package com.ranze.maincomponent.data.model;
+
+import com.ranze.basiclib.repository.remote.model.BaseModel;
 
 import java.util.List;
 

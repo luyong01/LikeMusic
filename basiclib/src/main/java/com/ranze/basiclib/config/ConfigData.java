@@ -1,10 +1,15 @@
 package com.ranze.basiclib.config;
 
+import android.content.SharedPreferences;
+
+import com.ranze.basiclib.Constants;
+import com.ranze.basiclib.util.SPUtil;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by luyong01 on 2018/2/12.
+ * Created by ranze on 2018/2/12.
  */
 
 public class ConfigData {
@@ -21,6 +26,12 @@ public class ConfigData {
 
     public static ConfigData getInstance() {
         return Holder.sInstance;
+    }
+
+    public void init() {
+        SharedPreferences sharedPreferences = SPUtil.getInstance().sharedPreferences();
+        userId = sharedPreferences.getInt(Constants.SP_USER_UID, -1);
+        loginCookie = sharedPreferences.getStringSet(Constants.SP_LOGIN_COOKIE, new HashSet<String>());
     }
 
     public int getUserId() {

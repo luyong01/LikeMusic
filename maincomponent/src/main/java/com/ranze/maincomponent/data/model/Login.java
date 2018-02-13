@@ -1,4 +1,6 @@
-package com.ranze.basiclib.repository.remote.model;
+package com.ranze.maincomponent.data.model;
+
+import com.ranze.basiclib.repository.remote.model.BaseModel;
 
 import java.util.List;
 
@@ -6,7 +8,7 @@ import java.util.List;
  * Created by luyong01 on 2018/2/12.
  */
 
-public class Login extends BaseModel{
+public class Login extends BaseModel {
 
 
     /**

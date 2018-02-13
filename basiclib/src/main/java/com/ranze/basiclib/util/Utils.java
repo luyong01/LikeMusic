@@ -2,9 +2,10 @@ package com.ranze.basiclib.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 /**
- * Created by luyong01 on 2018/2/12.
+ * Created by ranze on 2018/2/12.
  */
 
 public class Utils {
@@ -18,5 +19,13 @@ public class Utils {
 
     public static Context getContext() {
         return sContext;
+    }
+
+    public static @NonNull
+    <T> T checkNotNull(final T reference) {
+        if (reference == null) {
+            throw new NullPointerException();
+        }
+        return reference;
     }
 }

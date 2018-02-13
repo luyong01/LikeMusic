@@ -16,10 +16,14 @@ import android.view.MenuItem;
 import android.widget.RadioGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.ranze.basiclib.util.schedulers.SchedulerProvider;
 import com.ranze.componentservice.app.BaseCommonFragment;
+import com.ranze.maincomponent.data.MainRepository;
 import com.ranze.maincomponent.discovery.DiscoveryFragment;
 import com.ranze.maincomponent.friends.FriendsFragment;
+import com.ranze.maincomponent.music.MusicContract;
 import com.ranze.maincomponent.music.MusicFragment;
+import com.ranze.maincomponent.music.MusicPresenter;
 import com.ranze.maincomponent.router.path.PathConstants;
 
 import java.util.ArrayList;
@@ -128,7 +132,15 @@ public class MainActivity extends AppCompatActivity
             if (fragment == null) {
                 try {
                     fragment = (BaseCommonFragment) cls.newInstance();
+
+                    if (fragment instanceof MusicContract.View) {
+                        new MusicPresenter((MusicContract.View) fragment,
+                                SchedulerProvider.getInstance(),
+                                MainRepository.getInstance());
+                    }
+
                 } catch (InstantiationException e) {
+
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();

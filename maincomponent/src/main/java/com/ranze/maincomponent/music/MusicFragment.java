@@ -5,14 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
-import com.ranze.basiclib.config.ConfigData;
-import com.ranze.basiclib.repository.remote.NetWorker;
-import com.ranze.basiclib.util.LogUtil;
-import com.ranze.basiclib.util.schedulers.SchedulerProvider;
+import com.ranze.basiclib.util.Utils;
 import com.ranze.basiclib.widget.BaseAdapter;
 import com.ranze.basiclib.widget.BaseRecyclerView;
 import com.ranze.componentservice.app.BaseCommonFragment;
 import com.ranze.maincomponent.R;
+import com.ranze.maincomponent.data.model.PlayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,8 @@ import java.util.List;
  * Created by ranze on 2018/2/10.
  */
 
-public class MusicFragment extends BaseCommonFragment {
+public class MusicFragment extends BaseCommonFragment implements MusicContract.View {
+    private MusicContract.Presenter mPresenter;
     List<String> mData = new ArrayList<>();
 
     @Override
@@ -44,21 +43,19 @@ public class MusicFragment extends BaseCommonFragment {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
+
     protected void loadData() {
         Log.d("test", "music loadData");
 
         for (int i = 0; i < 100; ++i) {
             mData.add(i + " item");
         }
-        NetWorker.getInstance().playList(ConfigData.getInstance().getUserId())
-                .subscribeOn(SchedulerProvider.getInstance().io())
-                .observeOn(SchedulerProvider.getInstance().ui())
-                .subscribe(playList -> {
-                    if (playList.getCode() == 200) {
-                        LogUtil.d("size: " + playList.getPlaylist().size());
-                    }
-
-                });
+        mPresenter.loadList();
         mDataLoaded = true;
     }
 
@@ -68,5 +65,20 @@ public class MusicFragment extends BaseCommonFragment {
         bundle.putString(ARG_PARAM, string);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void setPresenter(MusicContract.Presenter presenter) {
+        mPresenter = Utils.checkNotNull(presenter);
+    }
+
+    @Override
+    public void showList(PlayList playList) {
+
+    }
+
+    @Override
+    public void switchToSongList() {
+
     }
 }
