@@ -11,6 +11,7 @@ import com.ranze.basiclib.util.SPUtil;
 import java.io.IOException;
 import java.util.HashSet;
 
+import io.reactivex.Flowable;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,6 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -61,6 +63,7 @@ public class NetWorker {
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(URL)
                 .build();
@@ -96,7 +99,6 @@ public class NetWorker {
 
                     ConfigData.getInstance().setUserId(login.getProfile().getUserId());
 
-                    playList(ConfigData.getInstance().getUserId());
                 }
 
             }
@@ -108,24 +110,8 @@ public class NetWorker {
         });
     }
 
-    public void playList(int uid) {
-        Call<PlayList> playListCall = mAPI.playList(uid);
-        playListCall.enqueue(new Callback<PlayList>() {
-            @Override
-            public void onResponse(Call<PlayList> call, Response<PlayList> response) {
-                LogUtil.d("response: " + response.raw().toString());
-                LogUtil.d("response: " + response.headers());
-                if (response.isSuccessful()) {
-                    PlayList list = new PlayList();
-                    LogUtil.d("playlist code = " + list.getCode());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PlayList> call, Throwable t) {
-                LogUtil.d("onFailure: " + t);
-
-            }
-        });
+    public Flowable<PlayList> playList(int uid) {
+        Flowable<PlayList> playListFlowable = mAPI.playList(uid);
+        return playListFlowable;
     }
 }

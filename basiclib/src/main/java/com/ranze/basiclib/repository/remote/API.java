@@ -3,6 +3,7 @@ package com.ranze.basiclib.repository.remote;
 import com.ranze.basiclib.repository.remote.model.Login;
 import com.ranze.basiclib.repository.remote.model.PlayList;
 
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -16,6 +17,6 @@ public interface API {
     Call<Login> login(@Query("phone") String phone, @Query("password") String password);
 
     @GET("user/playlist")
-    Call<PlayList> playList(@Query("uid") int uid);
+    Flowable<PlayList> playList(@Query("uid") int uid);
 }
 

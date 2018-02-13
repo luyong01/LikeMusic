@@ -1,6 +1,7 @@
 package com.ranze.likemusic;
 
 import com.facebook.stetho.Stetho;
+import com.ranze.basiclib.repository.remote.NetWorker;
 import com.ranze.basiclib.util.Utils;
 import com.ranze.componentservice.app.BaseCommonApplication;
 
@@ -20,5 +21,6 @@ public class App extends BaseCommonApplication {
 
         Utils.init(getApplicationContext());
 
+        NetWorker.getInstance().login("17621652365", "ly521561");
     }
 }

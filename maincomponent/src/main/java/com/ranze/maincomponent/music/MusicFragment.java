@@ -5,7 +5,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
+import com.ranze.basiclib.config.ConfigData;
 import com.ranze.basiclib.repository.remote.NetWorker;
+import com.ranze.basiclib.util.LogUtil;
+import com.ranze.basiclib.util.schedulers.SchedulerProvider;
 import com.ranze.basiclib.widget.BaseAdapter;
 import com.ranze.basiclib.widget.BaseRecyclerView;
 import com.ranze.componentservice.app.BaseCommonFragment;
@@ -47,9 +50,15 @@ public class MusicFragment extends BaseCommonFragment {
         for (int i = 0; i < 100; ++i) {
             mData.add(i + " item");
         }
+        NetWorker.getInstance().playList(ConfigData.getInstance().getUserId())
+                .subscribeOn(SchedulerProvider.getInstance().io())
+                .observeOn(SchedulerProvider.getInstance().ui())
+                .subscribe(playList -> {
+                    if (playList.getCode() == 200) {
+                        LogUtil.d("size: " + playList.getPlaylist().size());
+                    }
 
-        NetWorker.getInstance().login("17621652365", "ly521561");
-
+                });
         mDataLoaded = true;
     }
 
