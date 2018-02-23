@@ -5,7 +5,9 @@ package com.ranze.basiclib.repository.remote.model;
  */
 
 public class BaseModel {
-    protected int code;
+    private int itemType;
+
+    private int code;
 
     public int getCode() {
         return code;
@@ -13,5 +15,13 @@ public class BaseModel {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public int getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(int itemType) {
+        this.itemType = itemType;
     }
 }

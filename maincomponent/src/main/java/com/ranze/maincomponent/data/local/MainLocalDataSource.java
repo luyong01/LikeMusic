@@ -23,4 +23,9 @@ public class MainLocalDataSource implements MainDataSource {
     public Flowable<PlayList> loadPlayList(int uid) {
         return null;
     }
+
+    @Override
+    public Flowable<Boolean> login(String phone, String password) {
+        return null;
+    }
 }

@@ -32,6 +32,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.VH
 
     public void setData(List<T> data) {
         this.mData = data;
+        notifyDataSetChanged();
     }
 
     protected abstract int getLayoutId(int viewType);
@@ -67,23 +68,23 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.VH
         return mData.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) {
-            return ITEM_TYPE.HEADER.ordinal();
-        } else if (position == mData.size() + 1) {
-            return ITEM_TYPE.NORMAL.ordinal();
-        } else {
-            return ITEM_TYPE.NORMAL.ordinal();
-        }
-    }
+//    @Override
+//    public int getItemViewType(int position) {
+//        if (position == 0) {
+//            return ITEM_TYPE.HEADER.ordinal();
+//        } else if (position == mData.size() + 1) {
+//            return ITEM_TYPE.NORMAL.ordinal();
+//        } else {
+//            return ITEM_TYPE.NORMAL.ordinal();
+//        }
+//    }
 
     @Override
     public void registerAdapterDataObserver(AdapterDataObserver observer) {
         super.registerAdapterDataObserver(observer);
     }
 
-    static class VH extends RecyclerView.ViewHolder {
+    protected static class VH extends RecyclerView.ViewHolder {
         private SparseArray<View> mViews;
         private View mConvertView;
 

@@ -10,4 +10,6 @@ import io.reactivex.Flowable;
 
 public interface MainDataSource {
     Flowable<PlayList> loadPlayList(int uid);
+
+    Flowable<Boolean> login(String phone, String password);
 }

@@ -36,4 +36,9 @@ public class MainRepository implements MainDataSource {
     public Flowable<PlayList> loadPlayList(int uid) {
         return mMainRemoteDataSource.loadPlayList(uid);
     }
+
+    @Override
+    public Flowable<Boolean> login(String phone, String password) {
+        return mMainRemoteDataSource.login(phone, password);
+    }
 }

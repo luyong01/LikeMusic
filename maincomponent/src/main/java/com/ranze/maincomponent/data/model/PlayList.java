@@ -34,7 +34,7 @@ public class PlayList extends BaseModel {
         this.playlist = playlist;
     }
 
-    public static class PlaylistBean {
+    public static class PlaylistBean extends BaseModel {
         /**
          * subscribers : []
          * subscribed : false

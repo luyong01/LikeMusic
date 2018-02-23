@@ -30,17 +30,20 @@ public class MainRemoteDataSource implements MainDataSource {
         return INSTANCE;
     }
 
-    public Flowable login(String phone, String password) {
+    public Flowable<Boolean> login(String phone, String password) {
         return mMainApi.login(phone, password)
-                .doOnNext(login -> {
+                .map(login -> {
+                    if (login.getCode() == 200) {
+                        SPUtil.getInstance().sharedPreferences().edit()
+                                .putString(Constants.SP_USER_NICKNAME, login.getProfile().getNickname())
+                                .putInt(Constants.SP_USER_UID, login.getProfile().getUserId())
+                                .apply();
 
-                    SPUtil.getInstance().sharedPreferences().edit()
-                            .putString(Constants.SP_USER_NICKNAME, login.getProfile().getNickname())
-                            .putInt(Constants.SP_USER_UID, login.getProfile().getUserId())
-                            .apply();
+                        ConfigData.getInstance().setUserId(login.getProfile().getUserId());
 
-                    ConfigData.getInstance().setUserId(login.getProfile().getUserId());
-
+                        return true;
+                    }
+                    return false;
                 });
     }
 
