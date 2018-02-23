@@ -1,7 +1,5 @@
 package com.ranze.maincomponent.router.path;
 
-import android.view.View;
-
 /**
  * Created by ranze on 2018/2/4.
  */
@@ -13,4 +11,5 @@ public class PathConstants {
 
     public static final String VIEW_MAIN = ROOT + VIEW + "/maincomponent_main";
     public static final String SERVICE_MAIN = ROOT + SERVICE + "/maincomponent_main";
+    public static final String VIEW_LOGIN = ROOT + VIEW + "/maincomponent_login";
 }

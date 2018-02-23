@@ -23,4 +23,9 @@ public class MainServiceImpl implements MainService {
     public void startMainActivity() {
         ARouter.getInstance().build(PathConstants.VIEW_MAIN).navigation();
     }
+
+    @Override
+    public void startLoginActivity() {
+        ARouter.getInstance().build(PathConstants.VIEW_LOGIN).navigation();
+    }
 }

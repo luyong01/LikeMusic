@@ -46,11 +46,6 @@ public class MusicPresenter implements MusicContract.Presenter {
 
     @Override
     public void loadList() {
-        mRepository.login("17621652365", "ly521561")
-                .subscribeOn(mSchedulerProvider.io())
-                .observeOn(mSchedulerProvider.ui())
-                .subscribe(aBoolean -> LogUtil.d("login success? " + aBoolean));
-
         Disposable disposable = mRepository.loadPlayList(ConfigData.getInstance().getUserId())
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())

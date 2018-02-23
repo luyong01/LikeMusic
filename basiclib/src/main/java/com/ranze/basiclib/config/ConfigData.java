@@ -13,7 +13,7 @@ import java.util.Set;
  */
 
 public class ConfigData {
-    private int userId;
+    private int userId = -1;
     private Set<String> loginCookie;
 
     private static class Holder {
@@ -48,5 +48,9 @@ public class ConfigData {
 
     public void setLoginCookie(Set<String> loginCookie) {
         this.loginCookie = loginCookie;
+    }
+
+    public boolean isLogin() {
+        return userId != -1;
     }
 }

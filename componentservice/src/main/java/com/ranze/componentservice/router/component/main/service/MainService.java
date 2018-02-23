@@ -8,4 +8,6 @@ import com.ranze.componentservice.router.component.BaseService;
 
 public interface MainService extends BaseService {
     void startMainActivity();
+
+    void startLoginActivity();
 }
