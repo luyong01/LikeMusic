@@ -1,8 +1,8 @@
-package com.ranze.maincomponent.music;
+package com.ranze.maincomponent.main.music;
 
 import com.ranze.basiclib.BasePresenter;
 import com.ranze.basiclib.BaseView;
-import com.ranze.maincomponent.data.model.PlayList;
+import com.ranze.basiclib.widget.BaseFeedPresenter;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface MusicContract {
     interface View extends BaseView<Presenter> {
-        void showList(List<PlayList.PlaylistBean> playList);
+        void showList(List<BaseFeedPresenter> playList);
 
         void switchToSongList();
     }

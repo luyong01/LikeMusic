@@ -1,4 +1,4 @@
-package com.ranze.maincomponent.discovery;
+package com.ranze.maincomponent.main.discovery;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

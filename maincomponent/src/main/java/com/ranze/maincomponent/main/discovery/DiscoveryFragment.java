@@ -1,4 +1,4 @@
-package com.ranze.maincomponent.discovery;
+package com.ranze.maincomponent.main.discovery;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

@@ -5,7 +5,7 @@ package com.ranze.basiclib;
  */
 
 public interface BasePresenter {
-    void subscribe();
+    void onAttach();
 
-    void unsubscribe();
+    void onDetach();
 }

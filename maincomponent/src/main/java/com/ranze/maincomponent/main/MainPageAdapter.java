@@ -1,4 +1,4 @@
-package com.ranze.maincomponent;
+package com.ranze.maincomponent.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

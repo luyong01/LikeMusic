@@ -1,4 +1,4 @@
-package com.ranze.maincomponent.friends;
+package com.ranze.maincomponent.main.friends;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.ranze.componentservice.app.BaseCommonFragment;
 import com.ranze.maincomponent.R;
-import com.ranze.maincomponent.discovery.DiscoveryFragment;
+import com.ranze.maincomponent.main.discovery.DiscoveryFragment;
 
 /**
  * Created by ranze on 2018/2/10.

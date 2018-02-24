@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetWorker {
     private volatile static NetWorker sNetWorker;
 
-    private static final String URL = "http://172.18.32.40:3000/";
+    private static final String URL = "http://47.96.187.217/";
     private Retrofit mRetrofit;
 
 

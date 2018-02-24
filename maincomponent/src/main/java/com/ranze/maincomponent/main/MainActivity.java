@@ -1,4 +1,4 @@
-package com.ranze.maincomponent;
+package com.ranze.maincomponent.main;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -18,12 +18,13 @@ import android.widget.RadioGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ranze.basiclib.util.schedulers.SchedulerProvider;
 import com.ranze.componentservice.app.BaseCommonFragment;
+import com.ranze.maincomponent.R;
 import com.ranze.maincomponent.data.MainRepository;
-import com.ranze.maincomponent.discovery.DiscoveryFragment;
-import com.ranze.maincomponent.friends.FriendsFragment;
-import com.ranze.maincomponent.music.MusicContract;
-import com.ranze.maincomponent.music.MusicFragment;
-import com.ranze.maincomponent.music.MusicPresenter;
+import com.ranze.maincomponent.main.discovery.DiscoveryFragment;
+import com.ranze.maincomponent.main.friends.FriendsFragment;
+import com.ranze.maincomponent.main.music.MusicContract;
+import com.ranze.maincomponent.main.music.MusicFragment;
+import com.ranze.maincomponent.main.music.MusicPresenter;
 import com.ranze.maincomponent.router.path.PathConstants;
 
 import java.util.ArrayList;

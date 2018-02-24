@@ -1,7 +1,7 @@
 package com.ranze.maincomponent.data.local;
 
 import com.ranze.maincomponent.data.MainDataSource;
-import com.ranze.maincomponent.data.model.PlayList;
+import com.ranze.maincomponent.data.bean.PlayListBean;
 
 import io.reactivex.Flowable;
 
@@ -20,7 +20,7 @@ public class MainLocalDataSource implements MainDataSource {
     }
 
     @Override
-    public Flowable<PlayList> loadPlayList(int uid) {
+    public Flowable<PlayListBean> loadPlayList(int uid) {
         return null;
     }
 

@@ -2,8 +2,8 @@ package com.ranze.maincomponent.data;
 
 import android.support.annotation.NonNull;
 
+import com.ranze.maincomponent.data.bean.PlayListBean;
 import com.ranze.maincomponent.data.local.MainLocalDataSource;
-import com.ranze.maincomponent.data.model.PlayList;
 import com.ranze.maincomponent.data.remote.MainRemoteDataSource;
 
 import io.reactivex.Flowable;
@@ -33,7 +33,7 @@ public class MainRepository implements MainDataSource {
     }
 
     @Override
-    public Flowable<PlayList> loadPlayList(int uid) {
+    public Flowable<PlayListBean> loadPlayList(int uid) {
         return mMainRemoteDataSource.loadPlayList(uid);
     }
 

@@ -1,13 +1,18 @@
-package com.ranze.maincomponent.music;
+package com.ranze.maincomponent.main.music;
 
 import com.ranze.basiclib.config.ConfigData;
 import com.ranze.basiclib.util.LogUtil;
 import com.ranze.basiclib.util.Utils;
 import com.ranze.basiclib.util.schedulers.BaseSchedulerProvider;
+import com.ranze.basiclib.widget.BaseFeedPresenter;
+import com.ranze.maincomponent.feed.FeedType;
+import com.ranze.maincomponent.feed.MainFeedPresenter;
 import com.ranze.maincomponent.data.MainRepository;
-import com.ranze.maincomponent.data.model.PlayList;
+import com.ranze.maincomponent.data.bean.PlayListBean;
+import com.ranze.maincomponent.data.bean.PlayTitleBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -36,11 +41,11 @@ public class MusicPresenter implements MusicContract.Presenter {
     }
 
     @Override
-    public void subscribe() {
+    public void onAttach() {
     }
 
     @Override
-    public void unsubscribe() {
+    public void onDetach() {
         mCompositeDisposable.clear();
     }
 
@@ -53,18 +58,28 @@ public class MusicPresenter implements MusicContract.Presenter {
                     if (playList.getCode() == 200) {
                         return playList.getPlaylist();
                     }
-                    return new ArrayList<PlayList.PlaylistBean>();
+                    return new ArrayList<PlayListBean.PlaylistBean>();
                 })
                 .subscribe(playlistBeans -> {
-                    for (PlayList.PlaylistBean playlistBean : playlistBeans) {
-                        playlistBean.setItemType(ItemType.NORMAL_LINEAR);
+                    List<BaseFeedPresenter> playLists = new ArrayList<>();
+                    playLists.add(MainFeedPresenter.newInstance(new PlayTitleBean(FeedType.NORMAL_TITLE, "创建的歌单")));
+
+                    boolean firstSC = true; // 第一个收藏的歌单
+                    for (int i = 0; i < playlistBeans.size(); ++i) {
+                        PlayListBean.PlaylistBean playListBean = playlistBeans.get(i);
+
+                        if (playListBean.getCreator().getUserId() != ConfigData.getInstance().getUserId() && firstSC) {
+                            firstSC = false;
+                            playLists.add(MainFeedPresenter.newInstance(new PlayTitleBean(FeedType.NORMAL_TITLE, "收藏的歌单")));
+                        }
+
+                        playListBean.setFeedType(FeedType.NORMAL_LINEAR);
+                        playLists.add(MainFeedPresenter.newInstance(playListBean));
+
                     }
                     LogUtil.d("PlaylistBean size = " + playlistBeans.size());
-                    PlayList.PlaylistBean playlistBean = new PlayList.PlaylistBean();
-                    playlistBean.setItemType(ItemType.NOMAL_TITLE);
-                    playlistBean.setName("title");
-                    playlistBeans.add(0, playlistBean);
-                    mView.showList(playlistBeans);
+
+                    mView.showList(playLists);
                 }, throwable -> {
                     LogUtil.d("loadList: " + throwable.toString());
                 });

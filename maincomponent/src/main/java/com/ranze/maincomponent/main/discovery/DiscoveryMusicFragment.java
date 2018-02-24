@@ -1,4 +1,4 @@
-package com.ranze.maincomponent.discovery;
+package com.ranze.maincomponent.main.discovery;
 
 import android.util.Log;
 import android.view.View;

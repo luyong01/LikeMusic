@@ -1,4 +1,4 @@
-package com.ranze.maincomponent.music;
+package com.ranze.maincomponent.main.music;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,9 +8,10 @@ import android.view.View;
 import com.ranze.basiclib.util.LogUtil;
 import com.ranze.basiclib.util.Utils;
 import com.ranze.basiclib.widget.BaseAdapter;
+import com.ranze.basiclib.widget.BaseFeedPresenter;
 import com.ranze.componentservice.app.BaseCommonFragment;
+import com.ranze.maincomponent.feed.MainFeedsAdapter;
 import com.ranze.maincomponent.R;
-import com.ranze.maincomponent.data.model.PlayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,9 @@ import java.util.List;
 
 public class MusicFragment extends BaseCommonFragment implements MusicContract.View {
     private MusicContract.Presenter mPresenter;
-    List<PlayList.PlaylistBean> mData = new ArrayList<>();
-    private BaseAdapter<PlayList.PlaylistBean> mAdapter;
+
+    List<BaseFeedPresenter> mData = new ArrayList<>();
+    private BaseAdapter<BaseFeedPresenter> mAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -35,13 +37,13 @@ public class MusicFragment extends BaseCommonFragment implements MusicContract.V
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
 //        for (int i = 0; i < 100; ++i) {
-//            PlayList.PlaylistBean playlistBean = new PlayList.PlaylistBean();
+//            PlayListBean.PlaylistBean playlistBean = new PlayListBean.PlaylistBean();
 //            playlistBean.setName(i + "");
-//            playlistBean.setItemType(ItemType.NORMAL_LINEAR);
+//            playlistBean.setItemType(FeedType.NORMAL_LINEAR);
 //            mData.add(playlistBean);
 //        }
 
-        mAdapter = new FeedsAdapter(mData);
+        mAdapter = new MainFeedsAdapter(mData);
 
         recyclerView.setAdapter(mAdapter);
     }
@@ -49,7 +51,7 @@ public class MusicFragment extends BaseCommonFragment implements MusicContract.V
     @Override
     public void onPause() {
         super.onPause();
-        mPresenter.unsubscribe();
+        mPresenter.onDetach();
     }
 
     protected void loadData() {
@@ -72,7 +74,7 @@ public class MusicFragment extends BaseCommonFragment implements MusicContract.V
     }
 
     @Override
-    public void showList(List<PlayList.PlaylistBean> playList) {
+    public void showList(List<BaseFeedPresenter> playList) {
         mAdapter.setData(playList);
     }
 

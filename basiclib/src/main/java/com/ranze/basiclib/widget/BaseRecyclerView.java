@@ -50,12 +50,32 @@ public class BaseRecyclerView extends RecyclerView {
     @Override
     public void setAdapter(Adapter adapter) {
         super.setAdapter(adapter);
+
+//        addOnChildAttachStateChangeListener(new OnChildAttachStateChangeListener() {
+//            @Override
+//            public void onChildViewAttachedToWindow(View view) {
+//                ViewHolder viewHolder = findContainingViewHolder(view);
+//                if (viewHolder != null && viewHolder instanceof BaseViewHolder) {
+//                    ((BaseViewHolder) viewHolder).getPresenter().onAttach();
+//                }
+//            }
+//
+//            @Override
+//            public void onChildViewDetachedFromWindow(View view) {
+//                ViewHolder viewHolder = findContainingViewHolder(view);
+//                if (viewHolder != null && viewHolder instanceof BaseViewHolder) {
+//                    ((BaseViewHolder) viewHolder).getPresenter().onDetach();
+//
+//                }
+//            }
+//        });
+
         if (mEmptyView == null) {
             mEmptyView = LayoutInflater.from(getContext()).inflate(R.layout.basicres_default_empty_view,
                     (ViewGroup) getParent(), true);
         }
 
-        adapter.registerAdapterDataObserver(mObserver);
-        mObserver.onChanged();
+//        adapter.registerAdapterDataObserver(mObserver);
+//        mObserver.onChanged();
     }
 }

@@ -6,7 +6,7 @@ import com.ranze.basiclib.repository.remote.NetWorker;
 import com.ranze.basiclib.util.SPUtil;
 import com.ranze.maincomponent.data.MainApi;
 import com.ranze.maincomponent.data.MainDataSource;
-import com.ranze.maincomponent.data.model.PlayList;
+import com.ranze.maincomponent.data.bean.PlayListBean;
 
 import io.reactivex.Flowable;
 
@@ -47,7 +47,7 @@ public class MainRemoteDataSource implements MainDataSource {
                 });
     }
 
-    public Flowable<PlayList> loadPlayList(int uid) {
+    public Flowable<PlayListBean> loadPlayList(int uid) {
         return mMainApi.playList(uid);
     }
 

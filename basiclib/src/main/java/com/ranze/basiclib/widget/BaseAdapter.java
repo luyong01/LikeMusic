@@ -2,11 +2,8 @@ package com.ranze.basiclib.widget;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.AdapterDataObserver;
-import android.util.SparseArray;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -14,7 +11,7 @@ import java.util.List;
  * Created by ranze on 2018/2/10.
  */
 
-public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.VH> {
+public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
     enum ITEM_TYPE {
         HEADER,
         FOOTER,
@@ -35,24 +32,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.VH
         notifyDataSetChanged();
     }
 
-    protected abstract int getLayoutId(int viewType);
+    @Override
+    public abstract BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType);
 
     @Override
-    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        return VH.get(parent, getLayoutId(viewType));
-
-    }
-
-    @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
 
         convert(holder, mData.get(position), position);
 
     }
 
-    protected void convert(VH holder, T data, int position) {
-
+    protected void convert(BaseViewHolder holder, T data, int position) {
     }
 
     public void addHeaderView(View view) {
@@ -84,34 +74,34 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.VH
         super.registerAdapterDataObserver(observer);
     }
 
-    protected static class VH extends RecyclerView.ViewHolder {
-        private SparseArray<View> mViews;
-        private View mConvertView;
-
-        private VH(View itemView) {
-            super(itemView);
-            mConvertView = itemView;
-            mViews = new SparseArray<>();
-        }
-
-        static VH get(ViewGroup parent, int layoutId) {
-            View convertView = LayoutInflater.from(parent.getContext()).inflate(
-                    layoutId, parent, false);
-            return new VH(convertView);
-        }
-
-        <T extends View> T getView(int id) {
-            View view = mViews.get(id);
-            if (view == null) {
-                view = mConvertView.findViewById(id);
-                mViews.put(id, view);
-            }
-            return (T) view;
-        }
-
-        public void setText(int id, String text) {
-            TextView view = getView(id);
-            view.setText(text);
-        }
-    }
+//    protected static class VH extends RecyclerView.ViewHolder {
+//        private SparseArray<View> mViews;
+//        private View mConvertView;
+//
+//        private VH(View itemView) {
+//            super(itemView);
+//            mConvertView = itemView;
+//            mViews = new SparseArray<>();
+//        }
+//
+//        static VH get(ViewGroup parent, int layoutId) {
+//            View convertView = LayoutInflater.from(parent.getContext()).inflate(
+//                    layoutId, parent, false);
+//            return new VH(convertView);
+//        }
+//
+//        <T extends View> T getView(int id) {
+//            View view = mViews.get(id);
+//            if (view == null) {
+//                view = mConvertView.findViewById(id);
+//                mViews.put(id, view);
+//            }
+//            return (T) view;
+//        }
+//
+//        public void setText(int id, String text) {
+//            TextView view = getView(id);
+//            view.setText(text);
+//        }
+//    }
 }
