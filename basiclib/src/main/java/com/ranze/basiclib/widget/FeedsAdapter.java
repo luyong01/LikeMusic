@@ -31,4 +31,10 @@ public abstract class FeedsAdapter extends BaseAdapter<BaseFeedPresenter> {
 //        holder.setText(R.id.item_title, data.getName());
         holder.setPresenter(data);
     }
+
+    @Override
+    public void onViewRecycled(BaseViewHolder holder) {
+        super.onViewRecycled(holder);
+        holder.setPresenter(null);
+    }
 }
