@@ -2,6 +2,7 @@ package com.ranze.maincomponent.data;
 
 import android.support.annotation.NonNull;
 
+import com.ranze.maincomponent.data.bean.DetailListBean;
 import com.ranze.maincomponent.data.bean.PlayListBean;
 import com.ranze.maincomponent.data.local.MainLocalDataSource;
 import com.ranze.maincomponent.data.remote.MainRemoteDataSource;
@@ -40,5 +41,10 @@ public class MainRepository implements MainDataSource {
     @Override
     public Flowable<Boolean> login(String phone, String password) {
         return mMainRemoteDataSource.login(phone, password);
+    }
+
+    @Override
+    public Flowable<DetailListBean> loadDetailList(int playListId) {
+        return mMainRemoteDataSource.loadDetailList(playListId);
     }
 }

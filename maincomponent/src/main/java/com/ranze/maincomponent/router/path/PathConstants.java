@@ -12,4 +12,5 @@ public class PathConstants {
     public static final String VIEW_MAIN = ROOT + VIEW + "/maincomponent_main";
     public static final String SERVICE_MAIN = ROOT + SERVICE + "/maincomponent_main";
     public static final String VIEW_LOGIN = ROOT + VIEW + "/maincomponent_login";
+    public static final String VIEW_DETAILLIST = ROOT + VIEW + "/maincomponent_detaillist";
 }

@@ -5,13 +5,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.ranze.basiclib.util.LogUtil;
 import com.ranze.basiclib.util.Utils;
 import com.ranze.basiclib.widget.BaseAdapter;
 import com.ranze.basiclib.widget.BaseFeedPresenter;
 import com.ranze.componentservice.app.BaseCommonFragment;
+import com.ranze.maincomponent.MainConstants;
 import com.ranze.maincomponent.feed.MainFeedsAdapter;
 import com.ranze.maincomponent.R;
+import com.ranze.maincomponent.router.path.PathConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +82,7 @@ public class MusicFragment extends BaseCommonFragment implements MusicContract.V
     }
 
     @Override
-    public void switchToSongList() {
-
+    public void switchToDetailList(int playListId) {
+        ARouter.getInstance().build(PathConstants.VIEW_DETAILLIST).withInt(MainConstants.PALY_LIST_ID, playListId).navigation();
     }
 }

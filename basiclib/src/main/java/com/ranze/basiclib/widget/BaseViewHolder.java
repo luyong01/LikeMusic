@@ -16,7 +16,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private View mConvertView;
 
-    private BaseFeedPresenter mPresenter;
+    protected BaseFeedPresenter mPresenter;
 
     protected BaseViewHolder(View itemView) {
         super(itemView);

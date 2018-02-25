@@ -6,10 +6,13 @@
         <activity
             android:name=".main.MainActivity"
             android:label="@string/maincomponent_title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:label="@string/maincomponent_login"
-            android:name=".LoginActivity" />
+            android:name=".LoginActivity"
+            android:label="@string/maincomponent_login" />
+        <activity
+            android:name=".detailist.DetailListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

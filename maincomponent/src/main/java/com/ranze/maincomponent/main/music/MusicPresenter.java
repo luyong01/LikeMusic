@@ -5,6 +5,7 @@ import com.ranze.basiclib.util.LogUtil;
 import com.ranze.basiclib.util.Utils;
 import com.ranze.basiclib.util.schedulers.BaseSchedulerProvider;
 import com.ranze.basiclib.widget.BaseFeedPresenter;
+import com.ranze.maincomponent.feed.FeedEvent;
 import com.ranze.maincomponent.feed.FeedType;
 import com.ranze.maincomponent.feed.MainFeedPresenter;
 import com.ranze.maincomponent.data.MainRepository;
@@ -74,7 +75,16 @@ public class MusicPresenter implements MusicContract.Presenter {
                         }
 
                         playListBean.setFeedType(FeedType.NORMAL_LINEAR);
-                        playLists.add(MainFeedPresenter.newInstance(playListBean));
+                        MainFeedPresenter feedPresenter = MainFeedPresenter.newInstance(playListBean);
+                        feedPresenter.setFeedEventListener(new BaseFeedPresenter.OnFeedEventListener() {
+                            @Override
+                            public void onFeedEvent(BaseFeedPresenter feedPresenter, int event) {
+                                if (event == FeedEvent.CLICK) {
+                                    mView.switchToDetailList(playListBean.getId());
+                                }
+                            }
+                        });
+                        playLists.add(feedPresenter);
 
                     }
                     LogUtil.d("PlaylistBean size = " + playlistBeans.size());

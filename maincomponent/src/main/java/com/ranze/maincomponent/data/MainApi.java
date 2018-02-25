@@ -1,5 +1,6 @@
 package com.ranze.maincomponent.data;
 
+import com.ranze.maincomponent.data.bean.DetailListBean;
 import com.ranze.maincomponent.data.bean.LoginBean;
 import com.ranze.maincomponent.data.bean.PlayListBean;
 
@@ -17,5 +18,8 @@ public interface MainApi {
 
     @GET("user/playlist")
     Flowable<PlayListBean> playList(@Query("uid") int uid);
+
+    @GET("playlist/detail")
+    Flowable<DetailListBean> detailList(@Query("id") int playLIstId);
 }
 

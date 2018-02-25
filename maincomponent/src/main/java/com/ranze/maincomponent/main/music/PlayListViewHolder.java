@@ -11,5 +11,8 @@ import com.ranze.maincomponent.feed.MainViewHolder;
 public class PlayListViewHolder extends MainViewHolder {
     public PlayListViewHolder(View itemView) {
         super(itemView);
+        itemView.setOnClickListener((view) -> {
+            mPresenter.onClick();
+        });
     }
 }

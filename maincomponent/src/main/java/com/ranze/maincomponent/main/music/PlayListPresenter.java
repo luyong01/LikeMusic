@@ -1,6 +1,7 @@
 package com.ranze.maincomponent.main.music;
 
 import com.ranze.basiclib.repository.remote.bean.BaseFeedBean;
+import com.ranze.maincomponent.feed.FeedEvent;
 import com.ranze.maincomponent.feed.MainFeedPresenter;
 import com.ranze.maincomponent.R;
 import com.ranze.maincomponent.data.bean.PlayListBean;
@@ -10,7 +11,7 @@ import com.ranze.maincomponent.data.bean.PlayListBean;
  */
 
 public class PlayListPresenter extends MainFeedPresenter {
-      public PlayListPresenter(BaseFeedBean feed) {
+    public PlayListPresenter(BaseFeedBean feed) {
         super(feed);
     }
 
@@ -21,5 +22,12 @@ public class PlayListPresenter extends MainFeedPresenter {
         PlayListBean.PlaylistBean feed = (PlayListBean.PlaylistBean) mFeed;
         viewHolder.setText(R.id.item_title, feed.getName());
 
+    }
+
+    @Override
+    public void onClick() {
+        if (mFeedEventListener != null) {
+            mFeedEventListener.onFeedEvent(this, FeedEvent.CLICK);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.ranze.maincomponent.data;
 
+import com.ranze.maincomponent.data.bean.DetailListBean;
 import com.ranze.maincomponent.data.bean.PlayListBean;
 
 import io.reactivex.Flowable;
@@ -12,4 +13,6 @@ public interface MainDataSource {
     Flowable<PlayListBean> loadPlayList(int uid);
 
     Flowable<Boolean> login(String phone, String password);
+
+    Flowable<DetailListBean> loadDetailList(int playListId);
 }

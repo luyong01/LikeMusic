@@ -30,4 +30,6 @@ public class MainFeedPresenter extends BaseFeedPresenter {
         }
         return presenter;
     }
+
+
 }

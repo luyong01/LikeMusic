@@ -14,7 +14,7 @@ public interface MusicContract {
     interface View extends BaseView<Presenter> {
         void showList(List<BaseFeedPresenter> playList);
 
-        void switchToSongList();
+        void switchToDetailList(int playListId);
     }
 
     interface Presenter extends BasePresenter {

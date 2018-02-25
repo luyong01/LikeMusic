@@ -1,6 +1,7 @@
 package com.ranze.maincomponent.data.local;
 
 import com.ranze.maincomponent.data.MainDataSource;
+import com.ranze.maincomponent.data.bean.DetailListBean;
 import com.ranze.maincomponent.data.bean.PlayListBean;
 
 import io.reactivex.Flowable;
@@ -26,6 +27,11 @@ public class MainLocalDataSource implements MainDataSource {
 
     @Override
     public Flowable<Boolean> login(String phone, String password) {
+        return null;
+    }
+
+    @Override
+    public Flowable<DetailListBean> loadDetailList(int playListId) {
         return null;
     }
 }

@@ -10,6 +10,7 @@ import com.ranze.basiclib.repository.remote.bean.BaseFeedBean;
 public abstract class BaseFeedPresenter implements BasePresenter {
     protected BaseViewHolder mView;
     protected BaseFeedBean mFeed;
+    protected OnFeedEventListener mFeedEventListener;
 
     protected BaseFeedPresenter(BaseFeedBean feed) {
         assert feed != null;
@@ -36,5 +37,17 @@ public abstract class BaseFeedPresenter implements BasePresenter {
     @Override
     public void onDetach() {
 
+    }
+
+    public void onClick() {
+
+    }
+
+    public void setFeedEventListener(OnFeedEventListener feedEventListener) {
+        mFeedEventListener = feedEventListener;
+    }
+
+    public interface OnFeedEventListener {
+        void onFeedEvent(BaseFeedPresenter feedPresenter, int event);
     }
 }
