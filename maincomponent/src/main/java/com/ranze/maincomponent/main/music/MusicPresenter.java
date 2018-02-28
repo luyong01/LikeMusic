@@ -63,7 +63,7 @@ public class MusicPresenter implements MusicContract.Presenter {
                 })
                 .subscribe(playlistBeans -> {
                     List<BaseFeedPresenter> playLists = new ArrayList<>();
-                    playLists.add(MainFeedPresenter.newInstance(new PlayTitleBean(FeedType.NORMAL_TITLE, "创建的歌单")));
+                    playLists.add(MainFeedPresenter.newInstance(new PlayTitleBean(FeedType.PLAY_TITLE, "创建的歌单")));
 
                     boolean firstSC = true; // 第一个收藏的歌单
                     for (int i = 0; i < playlistBeans.size(); ++i) {
@@ -71,10 +71,10 @@ public class MusicPresenter implements MusicContract.Presenter {
 
                         if (playListBean.getCreator().getUserId() != ConfigData.getInstance().getUserId() && firstSC) {
                             firstSC = false;
-                            playLists.add(MainFeedPresenter.newInstance(new PlayTitleBean(FeedType.NORMAL_TITLE, "收藏的歌单")));
+                            playLists.add(MainFeedPresenter.newInstance(new PlayTitleBean(FeedType.PLAY_TITLE, "收藏的歌单")));
                         }
 
-                        playListBean.setFeedType(FeedType.NORMAL_LINEAR);
+                        playListBean.setFeedType(FeedType.PLAY_LIST);
                         MainFeedPresenter feedPresenter = MainFeedPresenter.newInstance(playListBean);
                         feedPresenter.setFeedEventListener(new BaseFeedPresenter.OnFeedEventListener() {
                             @Override

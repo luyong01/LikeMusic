@@ -5,5 +5,6 @@ package com.ranze.maincomponent;
  */
 
 public class MainConstants {
-    public static final String PALY_LIST_ID = "play_list_id";
+    public static final String PLAY_LIST_ID = "play_list_id";
+
 }

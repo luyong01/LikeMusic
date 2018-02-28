@@ -17,7 +17,7 @@ import com.ranze.basiclib.BaseFragment;
 
 public abstract class BaseCommonFragment extends BaseFragment {
     public static final String ARG_PARAM = "param_key";
-    protected String mParam;
+    protected Bundle mParam;
     protected Activity mActivity;
 
     protected boolean mDataLoaded;
@@ -29,7 +29,7 @@ public abstract class BaseCommonFragment extends BaseFragment {
         mActivity = (Activity) context;
         Bundle arguments = getArguments();
         if (arguments != null) {
-            mParam = arguments.getString(ARG_PARAM);
+            mParam = arguments.getBundle(ARG_PARAM);
         }
     }
 

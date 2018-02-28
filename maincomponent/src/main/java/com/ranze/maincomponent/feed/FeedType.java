@@ -5,7 +5,8 @@ package com.ranze.maincomponent.feed;
  */
 
 public interface FeedType {
-    int NORMAL_LINEAR = 0;
-    int NORMAL_TITLE = 1;
-    int LOAD_MORE = 2;
+    int PLAY_LIST = 0;
+    int PLAY_TITLE = 1;
+    int DETAIL_LIST = 2;
+    int LOAD_MORE = 3;
 }

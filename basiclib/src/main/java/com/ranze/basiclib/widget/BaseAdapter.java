@@ -27,7 +27,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         this.mData = data;
     }
 
-    public void setData(List<T> data) {
+    public void replaceData(List<T> data) {
         this.mData = data;
         notifyDataSetChanged();
     }

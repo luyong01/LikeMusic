@@ -20,6 +20,7 @@ public class MainFeedsAdapter extends FeedsAdapter {
     private int[] mLayoutIds = new int[]{
             R.layout.maincomponent_item_play_list,
             R.layout.maincomponent_item_play_title,
+            R.layout.maincomponent_item_detail_list,
     };
 
     private LayoutInflater mLayoutInflater;

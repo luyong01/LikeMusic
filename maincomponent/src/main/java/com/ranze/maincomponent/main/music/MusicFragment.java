@@ -42,7 +42,7 @@ public class MusicFragment extends BaseCommonFragment implements MusicContract.V
 //        for (int i = 0; i < 100; ++i) {
 //            PlayListBean.PlaylistBean playlistBean = new PlayListBean.PlaylistBean();
 //            playlistBean.setName(i + "");
-//            playlistBean.setItemType(FeedType.NORMAL_LINEAR);
+//            playlistBean.setItemType(FeedType.PLAY_LIST);
 //            mData.add(playlistBean);
 //        }
 
@@ -78,11 +78,11 @@ public class MusicFragment extends BaseCommonFragment implements MusicContract.V
 
     @Override
     public void showList(List<BaseFeedPresenter> playList) {
-        mAdapter.setData(playList);
+        mAdapter.replaceData(playList);
     }
 
     @Override
     public void switchToDetailList(int playListId) {
-        ARouter.getInstance().build(PathConstants.VIEW_DETAILLIST).withInt(MainConstants.PALY_LIST_ID, playListId).navigation();
+        ARouter.getInstance().build(PathConstants.VIEW_DETAILLIST).withInt(MainConstants.PLAY_LIST_ID, playListId).navigation();
     }
 }

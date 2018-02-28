@@ -6,6 +6,7 @@ import com.ranze.maincomponent.data.bean.DetailListBean;
 import com.ranze.maincomponent.data.bean.PlayListBean;
 import com.ranze.maincomponent.data.local.MainLocalDataSource;
 import com.ranze.maincomponent.data.remote.MainRemoteDataSource;
+import com.ranze.maincomponent.feed.FeedType;
 
 import io.reactivex.Flowable;
 
@@ -45,6 +46,14 @@ public class MainRepository implements MainDataSource {
 
     @Override
     public Flowable<DetailListBean> loadDetailList(int playListId) {
-        return mMainRemoteDataSource.loadDetailList(playListId);
+        return mMainRemoteDataSource.loadDetailList(playListId)
+                .map(detailListBean -> {
+                    if (detailListBean != null && detailListBean.getCode() == 200) {
+                        for (DetailListBean.ResultBean.TracksBean tracksBean : detailListBean.getResult().getTracks()) {
+                            tracksBean.setFeedType(FeedType.DETAIL_LIST);
+                        }
+                    }
+                    return detailListBean;
+                });
     }
 }

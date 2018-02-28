@@ -3,6 +3,7 @@ package com.ranze.maincomponent.feed;
 import android.view.View;
 
 import com.ranze.basiclib.widget.BaseViewHolder;
+import com.ranze.maincomponent.detailist.DetailFeedViewHolder;
 import com.ranze.maincomponent.main.music.PlayListViewHolder;
 import com.ranze.maincomponent.main.music.PlayTitleViewHolder;
 
@@ -11,19 +12,23 @@ import com.ranze.maincomponent.main.music.PlayTitleViewHolder;
  */
 
 public class MainViewHolder extends BaseViewHolder {
-    protected MainViewHolder(View itemView) {
+    public MainViewHolder(View itemView) {
         super(itemView);
     }
 
     public static MainViewHolder newInstance(int feedType, View itemView) {
         MainViewHolder viewHolder = null;
         switch (feedType) {
-            case FeedType.NORMAL_LINEAR:
+            case FeedType.PLAY_LIST:
                 viewHolder = new PlayListViewHolder(itemView);
                 break;
 
-            case FeedType.NORMAL_TITLE:
+            case FeedType.PLAY_TITLE:
                 viewHolder = new PlayTitleViewHolder(itemView);
+                break;
+
+            case FeedType.DETAIL_LIST:
+                viewHolder = new DetailFeedViewHolder(itemView);
                 break;
 
             default:

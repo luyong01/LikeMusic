@@ -1,5 +1,7 @@
 package com.ranze.maincomponent.data.bean;
 
+import com.ranze.basiclib.repository.remote.bean.BaseFeedBean;
+
 import java.util.List;
 
 /**
@@ -632,7 +634,7 @@ public class DetailListBean {
             }
         }
 
-        public static class TracksBean {
+        public static class TracksBean extends BaseFeedBean {
             /**
              * name : Hotel California
              * id : 26289183
@@ -1486,7 +1488,7 @@ public class DetailListBean {
                 private int dfsId;
                 private int bitrate;
                 private int playTime;
-                private int volumeDelta;
+                private double volumeDelta;
 
                 public String getName() {
                     return name;
@@ -1552,11 +1554,11 @@ public class DetailListBean {
                     this.playTime = playTime;
                 }
 
-                public int getVolumeDelta() {
+                public double getVolumeDelta() {
                     return volumeDelta;
                 }
 
-                public void setVolumeDelta(int volumeDelta) {
+                public void setVolumeDelta(double volumeDelta) {
                     this.volumeDelta = volumeDelta;
                 }
             }
@@ -1582,7 +1584,7 @@ public class DetailListBean {
                 private int dfsId;
                 private int bitrate;
                 private int playTime;
-                private int volumeDelta;
+                private double volumeDelta;
 
                 public String getName() {
                     return name;
@@ -1648,11 +1650,11 @@ public class DetailListBean {
                     this.playTime = playTime;
                 }
 
-                public int getVolumeDelta() {
+                public double getVolumeDelta() {
                     return volumeDelta;
                 }
 
-                public void setVolumeDelta(int volumeDelta) {
+                public void setVolumeDelta(double volumeDelta) {
                     this.volumeDelta = volumeDelta;
                 }
             }
@@ -1678,7 +1680,7 @@ public class DetailListBean {
                 private int dfsId;
                 private int bitrate;
                 private int playTime;
-                private int volumeDelta;
+                private double volumeDelta;
 
                 public String getName() {
                     return name;
@@ -1744,11 +1746,11 @@ public class DetailListBean {
                     this.playTime = playTime;
                 }
 
-                public int getVolumeDelta() {
+                public double getVolumeDelta() {
                     return volumeDelta;
                 }
 
-                public void setVolumeDelta(int volumeDelta) {
+                public void setVolumeDelta(double volumeDelta) {
                     this.volumeDelta = volumeDelta;
                 }
             }
@@ -1774,7 +1776,7 @@ public class DetailListBean {
                 private int dfsId;
                 private int bitrate;
                 private int playTime;
-                private int volumeDelta;
+                private double volumeDelta;
 
                 public String getName() {
                     return name;
@@ -1840,11 +1842,11 @@ public class DetailListBean {
                     this.playTime = playTime;
                 }
 
-                public int getVolumeDelta() {
+                public double getVolumeDelta() {
                     return volumeDelta;
                 }
 
-                public void setVolumeDelta(int volumeDelta) {
+                public void setVolumeDelta(double volumeDelta) {
                     this.volumeDelta = volumeDelta;
                 }
             }

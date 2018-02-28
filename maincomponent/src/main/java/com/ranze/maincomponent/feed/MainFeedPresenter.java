@@ -2,6 +2,7 @@ package com.ranze.maincomponent.feed;
 
 import com.ranze.basiclib.repository.remote.bean.BaseFeedBean;
 import com.ranze.basiclib.widget.BaseFeedPresenter;
+import com.ranze.maincomponent.detailist.DetailFeedPresenter;
 import com.ranze.maincomponent.main.music.PlayListPresenter;
 import com.ranze.maincomponent.main.music.PlayTitlePresenter;
 
@@ -17,12 +18,16 @@ public class MainFeedPresenter extends BaseFeedPresenter {
     public static MainFeedPresenter newInstance(BaseFeedBean feed) {
         MainFeedPresenter presenter = null;
         switch (feed.getType()) {
-            case FeedType.NORMAL_LINEAR:
+            case FeedType.PLAY_LIST:
                 presenter = new PlayListPresenter(feed);
                 break;
 
-            case FeedType.NORMAL_TITLE:
+            case FeedType.PLAY_TITLE:
                 presenter = new PlayTitlePresenter(feed);
+                break;
+
+            case FeedType.DETAIL_LIST:
+                presenter = new DetailFeedPresenter(feed);
                 break;
 
             default:

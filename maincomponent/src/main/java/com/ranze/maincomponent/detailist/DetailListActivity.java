@@ -23,7 +23,10 @@ public class DetailListActivity extends BaseCommonActivity {
 
         DetailListFragment fragment = (DetailListFragment) getSupportFragmentManager().findFragmentById(R.id.frag_container);
         if (fragment == null) {
-            fragment = DetailListFragment.newInstance(getIntent().getIntExtra(MainConstants.PALY_LIST_ID, -1));
+            int id = getIntent().getIntExtra(MainConstants.PLAY_LIST_ID, -1);
+            Bundle bundle = new Bundle();
+            bundle.putInt(MainConstants.PLAY_LIST_ID, id);
+            fragment = DetailListFragment.newInstance(bundle);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frag_container, fragment).commit();
         }
