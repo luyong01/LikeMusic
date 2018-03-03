@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ranze.basiclib.util.schedulers.SchedulerProvider;
 import com.ranze.componentservice.app.BaseCommonFragment;
+import com.ranze.maincomponent.MainUtils.MainUtils;
 import com.ranze.maincomponent.R;
 import com.ranze.maincomponent.data.MainRepository;
 import com.ranze.maincomponent.main.discovery.DiscoveryFragment;
@@ -149,6 +150,9 @@ public class MainActivity extends AppCompatActivity
             }
             mFragments.add(fragment);
         }
+
+        MainUtils.addPlaybarFragment(R.id.fl_play_var, fragmentManager);
+
     }
 
     @Override

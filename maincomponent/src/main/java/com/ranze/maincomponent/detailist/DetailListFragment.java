@@ -9,6 +9,7 @@ import com.ranze.basiclib.util.Utils;
 import com.ranze.basiclib.widget.BaseFeedPresenter;
 import com.ranze.componentservice.app.BaseCommonFragment;
 import com.ranze.maincomponent.MainConstants;
+import com.ranze.maincomponent.MainUtils.MainUtils;
 import com.ranze.maincomponent.R;
 import com.ranze.maincomponent.feed.MainFeedsAdapter;
 
@@ -41,6 +42,8 @@ public class DetailListFragment extends BaseCommonFragment implements DetailList
         mData = new ArrayList<>();
         mAdapter = new MainFeedsAdapter(mData);
         recyclerView.setAdapter(mAdapter);
+
+        MainUtils.addPlaybarFragment(R.id.fl_play_var, getChildFragmentManager());
     }
 
     @Override
@@ -71,4 +74,5 @@ public class DetailListFragment extends BaseCommonFragment implements DetailList
     public void showList(List<BaseFeedPresenter> feedPresenters) {
         mAdapter.replaceData(feedPresenters);
     }
+
 }

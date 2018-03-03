@@ -38,5 +38,9 @@ ext {
                     isStandalone : false,
                     applicationId: "${applicationId}.main",
             ],
+            play: [
+                    isStandalone : false,
+                    applicationId: "${applicationId}.play",
+            ],
     ]
 }

@@ -6,4 +6,5 @@ package com.ranze.componentservice.router.component;
 
 public class ComponentName {
     public static final String MAIN = "main";
+    public static final String PLAY = "play";
 }

@@ -7,4 +7,10 @@
         android:id="@+id/detail_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/fl_play_var"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom" />
 </FrameLayout>
