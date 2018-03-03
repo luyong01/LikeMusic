@@ -26,7 +26,7 @@ public abstract class BaseFeedPresenter implements BasePresenter {
     }
 
     public int getType() {
-        return mFeed.getType();
+        return mFeed.getFeedType();
     }
 
     @Override

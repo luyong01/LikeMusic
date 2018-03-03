@@ -29,6 +29,6 @@ public class PlayServiceImpl implements PlayService {
     public void play(int id, List<Integer> playingIds) {
         LogUtil.d("id = " + id
                 + ", ids = " + playingIds);
-
+        getPlaybarFragment().play(id, playingIds);
     }
 }

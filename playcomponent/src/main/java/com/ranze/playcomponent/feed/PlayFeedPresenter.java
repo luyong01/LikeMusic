@@ -15,7 +15,7 @@ public class PlayFeedPresenter extends BaseFeedPresenter {
 
     public PlayFeedPresenter newInstance(BaseFeedBean feed) {
         PlayFeedPresenter playFeedPresenter = null;
-        switch (feed.getType()) {
+        switch (feed.getFeedType()) {
             case FeedType.song_playing:
                 playFeedPresenter = new PlayingFeedPresenter(feed);
                 break;

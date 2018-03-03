@@ -15,7 +15,7 @@ public class BaseFeedBean extends BaseBean {
         this.feedType = feedType;
     }
 
-    public int getType() {
+    public int getFeedType() {
         return feedType;
     }
 
