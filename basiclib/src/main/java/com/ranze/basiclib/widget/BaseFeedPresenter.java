@@ -50,4 +50,8 @@ public abstract class BaseFeedPresenter implements BasePresenter {
     public interface OnFeedEventListener {
         void onFeedEvent(BaseFeedPresenter feedPresenter, int event);
     }
+
+    public BaseFeedBean getFeed() {
+        return mFeed;
+    }
 }

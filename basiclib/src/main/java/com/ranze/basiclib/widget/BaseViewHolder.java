@@ -22,6 +22,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         mViews = new SparseArray<>();
         mConvertView = itemView;
+
+        mConvertView.setOnClickListener((view) -> {
+            mPresenter.onClick();
+        });
     }
 
     public void setPresenter(BaseFeedPresenter presenter) {
