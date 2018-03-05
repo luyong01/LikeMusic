@@ -2,8 +2,6 @@ package com.ranze.basiclib.widget;
 
 import android.view.ViewGroup;
 
-import com.ranze.basiclib.util.LogUtil;
-
 import java.util.List;
 
 /**
@@ -21,14 +19,12 @@ public abstract class FeedsAdapter extends BaseAdapter<BaseFeedPresenter> {
 
     @Override
     public int getItemViewType(int position) {
-        LogUtil.d("getItemViewType: " + position);
         return mData.get(position).getType();
     }
 
     @Override
     protected void convert(BaseViewHolder holder, BaseFeedPresenter data, int position) {
         super.convert(holder, data, position);
-//        holder.setText(R.id.item_title, data.getName());
         holder.setPresenter(data);
     }
 
