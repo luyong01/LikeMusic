@@ -1,5 +1,11 @@
 package com.ranze.playcomponent;
 
+import android.app.Service;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +19,7 @@ import com.ranze.playcomponent.data.MusicBean;
 import com.ranze.playcomponent.data.PlayRemoteDataSource;
 import com.ranze.playcomponent.feed.FeedType;
 import com.ranze.playcomponent.feed.PlayFeedsAdapter;
+import com.ranze.playcomponent.player.PlayerService;
 import com.ranze.playcomponent.router.path.PathConstants;
 
 import java.util.ArrayList;
@@ -25,8 +32,23 @@ import io.reactivex.disposables.Disposable;
  */
 @Route(path = PathConstants.VIEW_PLAYBAR)
 public class PlayBarFragment extends BaseCommonFragment {
+    private static PlayBarFragment INSTANCE;
     private List<BaseFeedPresenter> mData;
     private List<MusicBean.DataBean> mDataBeans;  // 歌曲的url
+
+    private PlayerService mPlayerService;
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mPlayerService = ((PlayerService.LocalBinder) service).getPlayerService();
+            LogUtil.d("PlayBarFragment#onServiceConnected");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            LogUtil.d("PlayBarFragment#onServiceDisconnected");
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -42,6 +64,9 @@ public class PlayBarFragment extends BaseCommonFragment {
         mData = new ArrayList<>();
         PlayFeedsAdapter adapter = new PlayFeedsAdapter(mData);
         recyclerView.setAdapter(adapter);
+
+        Intent intent = new Intent(mActivity, PlayerService.class);
+        mActivity.bindService(intent, mServiceConnection, Service.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -57,7 +82,6 @@ public class PlayBarFragment extends BaseCommonFragment {
     }
 
     public void play(int id, List<Integer> ids) {
-
         Disposable disposable = PlayRemoteDataSource.getInstance().getUrl(ids)
                 .map(musicBean -> {
                     List<MusicBean.DataBean> dataBeanList = null;
@@ -78,9 +102,29 @@ public class PlayBarFragment extends BaseCommonFragment {
                                 break;
                             }
                         }
-                        new MusicPlayer().play(url);
+                        if (mPlayerService != null) {
+                            mPlayerService.start(url);
+                        }
                     }
                 });
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mActivity.unbindService(mServiceConnection);
+    }
+
+    public static PlayBarFragment getInstance(Bundle args) {
+        if (INSTANCE == null) {
+            synchronized (PlayBarFragment.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new PlayBarFragment();
+                    INSTANCE.setArguments(args);
+                }
+            }
+        }
+        return INSTANCE;
     }
 }

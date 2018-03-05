@@ -3,7 +3,6 @@ package com.ranze.playcomponent.router.service;
 import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.ranze.basiclib.util.LogUtil;
 import com.ranze.componentservice.router.component.play.service.PlayService;
 import com.ranze.playcomponent.PlayBarFragment;
@@ -21,14 +20,14 @@ public class PlayServiceImpl implements PlayService {
 
     }
 
-    public PlayBarFragment getPlaybarFragment() {
-        return (PlayBarFragment) ARouter.getInstance().build(PathConstants.VIEW_PLAYBAR).navigation();
+    public PlayBarFragment getPlayBarFragment() {
+        return PlayBarFragment.getInstance(null);
     }
 
     @Override
     public void play(int id, List<Integer> playingIds) {
         LogUtil.d("id = " + id
                 + ", ids = " + playingIds);
-        getPlaybarFragment().play(id, playingIds);
+        getPlayBarFragment().play(id, playingIds);
     }
 }

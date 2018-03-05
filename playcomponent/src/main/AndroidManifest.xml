@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ranze.playcomponent" />
+    package="com.ranze.playcomponent">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <application>
+        <service
+            android:name=".player.PlayerService"
+             />
+    </application>
+</manifest>

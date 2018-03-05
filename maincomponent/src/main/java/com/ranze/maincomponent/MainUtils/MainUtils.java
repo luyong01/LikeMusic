@@ -17,7 +17,7 @@ public class MainUtils {
         if (fragment == null) {
             try {
                 PlayComponent playComponent = (PlayComponent) ComponentManager.getInstance().getComponent(ComponentName.PLAY);
-                fragment = playComponent.getPlayService().getPlaybarFragment();
+                fragment = playComponent.getPlayService().getPlayBarFragment();
                 fragmentManager.beginTransaction().add(containerViewId, fragment).commit();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

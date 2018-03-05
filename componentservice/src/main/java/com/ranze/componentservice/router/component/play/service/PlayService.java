@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public interface PlayService extends BaseService {
-    Fragment getPlaybarFragment();
+    Fragment getPlayBarFragment();
 
     void play(int id, List<Integer> playingIds);
 }
